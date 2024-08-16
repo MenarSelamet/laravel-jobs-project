@@ -2,8 +2,9 @@
 use \Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
- $jobs = [
-            [
+class job {
+    public static function all():array {
+        return [[
                 "id"=> 1,
             'title'=> 'Director',
             'salary'=> '$50,000'
@@ -19,17 +20,19 @@ use Illuminate\Support\Facades\Route;
             'salary'=> '$40,000'
         ]
           ];
+} };
+            
 
 Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/jobs', function () use ($jobs) {
-    return view('jobs', ['jobs'=> $jobs]);
+Route::get('/jobs', function ()  {
+    return view('jobs', ['jobs'=> job::all()]);
 });
 
-Route::get('/jobs/{id}', function ($id) use ($jobs) {
-    $job = Arr::first($jobs, fn($job) => $job['id'] == $id);
+Route::get('/jobs/{id}', function ($id)  {
+    $job = Arr::first(job::all(), fn($job) => $job['id'] == $id);
     return view('job', ['job'=> $job]);
 });
          
