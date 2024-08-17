@@ -12,5 +12,8 @@
             :
             Pays {{ $job['salary']}} Perarticleic
             @endforeach
+            <div>
+                {{$jobs->links()}}
+            </div>
     </div>
 </x-layout>
