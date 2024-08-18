@@ -45,10 +45,21 @@
             </div>
         </div>
 
-        <div class="mt-6 flex items-center justify-end gap-x-6">
-            <a href="/jobs/{{$job->id}}" type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</a>
-            <button type="submit"
-                class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Update</button>
+        <div class="mt-6 flex items-center justify-end gap-x-6 sm:flex sm:justify-between">
+            <div>
+                <button form="delete-form"
+                    class="bg-red-600 px-4 py-2 text-sm font-medium text-white rounded-md hover:bg-red-500 ">Delete</button>
+            </div>
+            <div>
+                <a href="/jobs/{{$job->id}}" type="button"
+                    class="text-sm font-semibold leading-6 text-gray-900">Cancel</a>
+                <button type="submit"
+                    class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Update</button>
+            </div>
         </div>
+    </form>
+    <form method="POST" action="/jobs/{{$job->id}}" class="hidden" id="delete-form">
+        @csrf
+        @method('DELETE')
     </form>
 </x-layout>
