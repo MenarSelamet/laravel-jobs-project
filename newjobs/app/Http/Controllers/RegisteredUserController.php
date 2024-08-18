@@ -10,11 +10,6 @@ class RegisteredUserController extends Controller
     public function create(){
         return view("auth.register");
     }
-
-     public function login(){
-        return view("auth.login");
-    }
-
      public function store(){
         request()->validate([
         'first_name' => ['required', 'min:3'],
