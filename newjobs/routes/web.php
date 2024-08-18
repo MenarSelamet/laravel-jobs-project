@@ -4,8 +4,8 @@ use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', fn()=>view('home'));
-Route::get('/contact', fn()=>view('contact'));
+Route::view('/', 'home');
+Route::view('/contact','contact');
 Route::get('/jobs', [JobController::class, 'index']); 
 Route::get('/jobs/create', [JobController::class, 'create']);
 Route::post('/jobs', [JobController::class,'store']);
