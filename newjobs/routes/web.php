@@ -17,10 +17,6 @@ Route::get('/jobs/create', function () {
 });
 
 
-Route::get('/jobs/{id}', function ($id)  {
-   $job = Job::find($id);
-    return view('jobs.show', ['job'=> $job]);
-});
 
 
 Route::post('/jobs', function () {
@@ -37,6 +33,12 @@ Route::post('/jobs', function () {
 
     return redirect('/jobs');
 });
+
+Route::get('/jobs/{id}', function ($id)  {
+   $job = Job::find($id);
+    return view('jobs.show', ['job'=> $job]);
+});
+
 
 Route::get('/contact', function () {
     return view('contact');
