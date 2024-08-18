@@ -72,7 +72,8 @@ Route::patch('/jobs/{id}', function ($id)  {
 
 // Destroy
 Route::delete('/jobs/{id}', function ($id)  {
-  
+   Job::findOrFail($id)->delete();
+  return redirect('/jobs');
 });
 
 Route::get('/contact', function () {
