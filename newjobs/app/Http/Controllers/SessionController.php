@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class SessionController extends Controller
 {
@@ -14,14 +15,16 @@ class SessionController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required']
         ]);
-
-        Auth::attempt($validatedAttributes);
-        request()->session()->regenerate();
+        if(!Auth::attempt($validatedAttributes)){
+            throw ValidationException::withMessages([
+                'email'=> 'Sorry bro, you got it wrong'
+             ]);
+       
+    }  request()->session()->regenerate();
         return redirect('/jobs');
-    }
+}}
 
-      public function destroy(){
+     function destroy(){
        Auth::logout();
        return redirect("/");
     }
-}
