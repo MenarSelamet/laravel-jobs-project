@@ -11,20 +11,28 @@ class SessionController extends Controller
     }
 
      public function store(){
-       $validatedAttributes = request()->validate([
+       $attributes = request()->validate([
             'email' => ['required', 'email'],
             'password' => ['required']
         ]);
-        if(!Auth::attempt($validatedAttributes)){
+
+        if (! Auth::attempt($attributes)) {
             throw ValidationException::withMessages([
-                'email'=> 'Sorry bro, you got it wrong'
-             ]);
-       
-    }  request()->session()->regenerate();
+                'email' => 'Sorry, those credentials do not match.'
+            ]);
+        }
+
+        request()->session()->regenerate();
+
         return redirect('/jobs');
+    }
+
+    public function destroy()
+    {
+        Auth::logout();
+
+        return redirect('/');
 }}
 
-     function destroy(){
-       Auth::logout();
-       return redirect("/");
-    }
+  
+    

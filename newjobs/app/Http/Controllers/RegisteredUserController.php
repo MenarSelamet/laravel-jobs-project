@@ -10,18 +10,17 @@ class RegisteredUserController extends Controller
         return view("auth.register");
     }
      public function store(){
-      $validatedAttributes =  request()->validate([
-        'first_name' => ['required'],
-        'last_name' => ['required'],
-        'email' => ['required', 'email'],
-        'password'=> ['required', Password::min(6), 'confirmed'],
-        'password_confirmation'=>['required'],
-    ]);
+       $attributes = request()->validate([
+            'first_name' => ['required'],
+            'last_name'  => ['required'],
+            'email'      => ['required', 'email'],
+            'password'   => ['required', Password::min(6), 'confirmed']
+        ]);
 
-    $user = User::create($validatedAttributes);
+        $user = User::create($attributes);
 
-    Auth::login($user);
+        Auth::login($user);
 
-    return redirect('/jobs');
+        return redirect('/jobs');
     }
 }
