@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Providers;
-
+use App\Models\User;
+use App\Models\Job;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,8 +24,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         Model::preventLazyLoading();
+        Gate::define('edit-job', function(User $user, Job $job){
+       return $job->employer->user->is($user);
+    });
     }
 }
