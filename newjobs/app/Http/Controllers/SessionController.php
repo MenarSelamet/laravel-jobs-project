@@ -9,19 +9,19 @@ class SessionController extends Controller
 {
     public function create()
     {
-        return view("auth.login");
+        return view('auth.login');
     }
 
     public function store()
     {
         $attributes = request()->validate([
             'email' => ['required', 'email'],
-            'password' => ['required']
+            'password' => ['required'],
         ]);
 
-        if (!Auth::attempt($attributes)) {
+        if (! Auth::attempt($attributes)) {
             throw ValidationException::withMessages([
-                'email' => 'Sorry, those credentials do not match.'
+                'email' => 'Sorry, those credentials do not match.',
             ]);
         }
 
