@@ -10,11 +10,12 @@ class Employer extends Model
 {
     use HasFactory;
 
-    public function jobs(){
-    return $this->hasMany(Job::class);
-}
-  public function user(): BelongsTo 
-  {
-    return $this->belongsTo(User::class);
-}
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

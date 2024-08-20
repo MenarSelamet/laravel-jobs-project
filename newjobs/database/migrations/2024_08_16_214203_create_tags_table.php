@@ -3,11 +3,10 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use \App\Models\Job;
-use \App\Models\Tag;
+use App\Models\Job;
+use App\Models\Tag;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -17,11 +16,11 @@ return new class extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table-> foreignIdFor(\App\Models\User::class);
+            $table->foreignIdFor(\App\Models\User::class);
             $table->string('name');
             $table->timestamps();
         });
-         Schema::create('job_tag', function (Blueprint $table) {
+        Schema::create('job_tag', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Job::class, 'job_listing_id')->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Tag::class)->constrained()->cascadeOnDelete();
