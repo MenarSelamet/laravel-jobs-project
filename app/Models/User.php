@@ -14,7 +14,12 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'email',
+        'password',
+    ];
 
     /**
      * The attributes that should be hidden for serialization.

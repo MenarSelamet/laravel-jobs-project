@@ -5,15 +5,16 @@
     <div class="space-y-4">
         @foreach($jobs as $job)
         <a href="/jobs/{{$job['id']}}" class="block px-4 py-6 border border-gray-500 rounded-lg">
-            <div class="font-bold text-green-700"> {{ $job->employer->name}}
-                div </div>
+            <div class="font-bold text-green-700">
+                {{ $job->employer ? $job->employer->name : 'No Employer' }}
+            </div>
 
             <strong class="text-blue-700 hover:underline">{{ $job['title'] }}</strong>
             :
             Pays {{ $job['salary']}} Perarticleic
-            @endforeach
-            <div>
-                {{$jobs->links()}}
-            </div>
+        @endforeach
+        <div>
+            {{$jobs->links()}}
+        </div>
     </div>
 </x-layout>
