@@ -36,17 +36,23 @@
         </div>
     </div>
 
-    @if(auth()->check() && auth()->user()->id === $job->employer->user_id)
-        <div class="mt-6 flex justify-end space-x-4">
-            <a href="/jobs/{{ $job->id }}/edit" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                Edit Job
-            </a>
-            <button onclick="document.getElementById('deleteModal').classList.remove('hidden')" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                Delete Job
-            </button>
-        </div>
+    <div class="mt-6 flex justify-between items-center">
+        <a href="/jobs" class="text-sm font-semibold leading-6 text-gray-900">Back to Jobs</a>
+        
+        @if(auth()->check() && auth()->user()->id === $job->employer->user_id)
+            <div class="flex space-x-4">
+                <a href="/jobs/{{ $job->id }}/edit" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                    Edit Job
+                </a>
+                <button onclick="document.getElementById('deleteModal').classList.remove('hidden')" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                    Delete Job
+                </button>
+            </div>
+        @endif
+    </div>
 
-        <!-- Delete Modal -->
+    <!-- Delete Modal -->
+    @if(auth()->check() && auth()->user()->id === $job->employer->user_id)
         <div id="deleteModal" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
             <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
                 <h3 class="text-lg font-medium text-gray-900 mb-4">Delete Job</h3>
@@ -66,8 +72,4 @@
             </div>
         </div>
     @endif
-
-    <div class="mt-6 flex justify-start">
-        <a href="/jobs" class="text-sm font-semibold leading-6 text-gray-900">Back to Jobs</a>
-    </div>
 </x-layout>
