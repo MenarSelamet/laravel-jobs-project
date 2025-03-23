@@ -32,7 +32,6 @@ A modern job board platform built with Laravel, designed to help employers post 
 - **Frontend:** 
   - Blade Templates
   - Tailwind CSS
-  - Alpine.js
 - **Database:** MySQL
 - **Authentication:** Laravel Breeze
 
@@ -61,8 +60,8 @@ php artisan key:generate
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=laravel_jobs
-DB_USERNAME=root
+DB_DATABASE=your_database
+DB_USERNAME=your_database
 DB_PASSWORD=
 ```
 
@@ -82,4 +81,7 @@ php artisan serve
 2. Add job details including title, description, salary, and tags
 3. Browse jobs from the homepage or jobs page
 4. Use the mobile-responsive navigation to access all features
+<<<<<<< HEAD
 
+=======
+>>>>>>> abb8dcecc129334aa04c2f5e271a46ccec9a6005
