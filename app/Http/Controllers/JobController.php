@@ -70,25 +70,41 @@ class JobController extends Controller
 
     public function edit(Job $job)
     {
-        return view('jobs.edit', ['job' => $job]);
+        return view('jobs.edit', [
+            'job' => $job,
+            'tags' => Tag::all()
+        ]);
     }
 
     public function update(Job $job)
     {
-        request()->validate([
+        $attributes = request()->validate([
             'title' => ['required', 'min:3'],
+            'description' => ['required', 'min:10'],
             'salary' => ['required'],
+            'tags' => ['array'],
+            'tags.*' => ['exists:tags,id']
         ]);
 
-        $job->update(request(['title', 'salary']));
+        $job->update([
+            'title' => $attributes['title'],
+            'description' => $attributes['description'],
+            'salary' => $attributes['salary']
+        ]);
 
-        return redirect('/jobs');
+        // Sync tags
+        if (isset($attributes['tags'])) {
+            $job->tags()->sync($attributes['tags']);
+        } else {
+            $job->tags()->detach();
+        }
+
+        return redirect('/jobs/' . $job->id);
     }
 
     public function destroy(Job $job)
     {
         $job->delete();
-
         return redirect('/jobs');
     }
 }
