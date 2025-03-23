@@ -81,7 +81,6 @@ php artisan serve
 2. Add job details including title, description, salary, and tags
 3. Browse jobs from the homepage or jobs page
 4. Use the mobile-responsive navigation to access all features
-<<<<<<< HEAD
 
-=======
->>>>>>> abb8dcecc129334aa04c2f5e271a46ccec9a6005
+
+
